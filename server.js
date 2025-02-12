@@ -1,9 +1,9 @@
-// @ts-ignore
 // Virtual entry point for the app
 import * as remixBuild from 'virtual:remix/server-build';
-import {storefrontRedirect} from '@shopify/hydrogen';
-import {createRequestHandler} from '@shopify/remix-oxygen';
-import {createAppLoadContext} from '~/lib/context';
+import { storefrontRedirect } from '@shopify/hydrogen';
+import { createRequestHandler } from '@shopify/remix-oxygen';
+import { createAppLoadContext } from '~/lib/context';
+import { createContentSecurityPolicy } from '@shopify/hydrogen';
 
 /**
  * Export a fetch handler in module format.
@@ -35,6 +35,24 @@ export default {
 
       const response = await handleRequest(request);
 
+      // Apply Content Security Policy (CSP)
+      const csp = createContentSecurityPolicy({
+        directives: {
+          defaultSrc: ["'self'"],
+          styleSrc: [
+            "'self'",
+            "'unsafe-inline'",
+            "https://fonts.googleapis.com",
+          ],
+          fontSrc: [
+            "'self'",
+            "https://fonts.gstatic.com",
+          ],
+        },
+      });
+
+      response.headers.set('Content-Security-Policy', csp);
+
       if (appLoadContext.session.isPending) {
         response.headers.set(
           'Set-Cookie',
@@ -59,7 +77,7 @@ export default {
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
-      return new Response('An unexpected error occurred', {status: 500});
+      return new Response('An unexpected error occurred', { status: 500 });
     }
   },
 };
