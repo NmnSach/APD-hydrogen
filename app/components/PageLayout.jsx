@@ -9,6 +9,7 @@ import {
   SearchFormPredictive,
 } from '~/components/SearchFormPredictive';
 import {SearchResultsPredictive} from '~/components/SearchResultsPredictive';
+import Menu from './Menu';
 
 /**
  * @param {PageLayoutProps}
@@ -35,6 +36,7 @@ export function PageLayout({
         />
       )}
       <main>{children}</main>
+      <Menu />
       <Footer
         footer={footer}
         header={header}

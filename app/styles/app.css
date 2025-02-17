@@ -16,12 +16,12 @@
   --color-dark: #000;
   --color-light: #fff;
   --font-charter: 'Charter', serif;
-  --font-ibm-plex-sans: 'IBM Plex Sans', sans-serif;
+  --font-ibm: 'IBM Plex Sans', sans-serif;
 }
 
 body {
   /* font-family: var(--font-charter); */
-  font-family: var(--font-ibm-plex-sans);
+  /* font-family: var(--font-ibm); */
 }
 
 img {
