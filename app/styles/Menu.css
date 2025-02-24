@@ -8,8 +8,7 @@
 
 .menu__grid__container {
   display: flex;
-  height: 100vh;
-  gap: 30rem;
+  height: 110vh;
 }
 
 .menu__left__container {
@@ -17,6 +16,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 95%;
+  min-width: 35rem;
 }
 
 .menu__left {
